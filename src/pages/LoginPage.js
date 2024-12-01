@@ -130,7 +130,7 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Password visibility icons
 import { signInWithEmailAndPassword } from "firebase/auth"; // Firebase authentication
-import { auth } from "../firebase"; // Import Firebase configuration
+import { auth } from "../firebase"; // Firebase configuration
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -156,13 +156,19 @@ const LoginPage = () => {
       setSuccessModal(true);
       setLoading(false);
 
-      // Redirect to dashboard after a delay
+      // Redirect to dashboard after showing success modal
       setTimeout(() => {
         window.location.href = "/dashboard";
-      }, 1500);
+      }, 2000);
     } catch (err) {
       // Show error modal with error message
-      setErrorModal(err.message);
+      setErrorModal(
+        err.code === "auth/user-not-found"
+          ? "No user found with this email."
+          : err.code === "auth/wrong-password"
+          ? "Incorrect password. Please try again."
+          : err.message
+      );
       setLoading(false);
     }
   };
@@ -272,7 +278,7 @@ const LoginPage = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white rounded-lg p-6 w-80 text-center shadow-lg">
             <h2 className="text-xl font-bold text-green-500">Success</h2>
-            <p className="mt-4 text-gray-700">Login successful!</p>
+            <p className="mt-4 text-gray-700">Login successful! Redirecting...</p>
           </div>
         </div>
       )}
