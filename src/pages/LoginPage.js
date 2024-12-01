@@ -129,20 +129,42 @@
 
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Password visibility icons
+import { signInWithEmailAndPassword } from "firebase/auth"; // Firebase authentication
+import { auth } from "../firebase"; // Import Firebase configuration
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorModal, setErrorModal] = useState(null); // Error modal state
+  const [successModal, setSuccessModal] = useState(false); // Success modal state
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login:", { email, password });
-    // Add your login logic here
+    setLoading(true);
+
+    try {
+      // Authenticate user with Firebase
+      await signInWithEmailAndPassword(auth, email, password);
+
+      // Show success modal
+      setSuccessModal(true);
+      setLoading(false);
+
+      // Redirect to dashboard after a delay
+      setTimeout(() => {
+        window.location.href = "/dashboard";
+      }, 1500);
+    } catch (err) {
+      // Show error modal with error message
+      setErrorModal(err.message);
+      setLoading(false);
+    }
   };
 
   return (
@@ -205,8 +227,9 @@ const LoginPage = () => {
               <button
                 type="submit"
                 className="w-full bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 focus:ring-2 focus:ring-red-300 transition duration-300"
+                disabled={loading}
               >
-                Login
+                {loading ? "Logging In..." : "Login"}
               </button>
             </form>
 
@@ -227,6 +250,32 @@ const LoginPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Error Modal */}
+      {errorModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded-lg p-6 w-80 text-center shadow-lg">
+            <h2 className="text-xl font-bold text-red-500">Error</h2>
+            <p className="mt-4 text-gray-700">{errorModal}</p>
+            <button
+              onClick={() => setErrorModal(null)}
+              className="mt-6 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Success Modal */}
+      {successModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded-lg p-6 w-80 text-center shadow-lg">
+            <h2 className="text-xl font-bold text-green-500">Success</h2>
+            <p className="mt-4 text-gray-700">Login successful!</p>
+          </div>
+        </div>
+      )}
 
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-6">
