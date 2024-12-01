@@ -5,13 +5,12 @@ import { getFirestore } from "firebase/firestore";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCzOUDCuRwieuyF3WWDz7rhC_141OVB71E",
-    authDomain: "medi-app-63403.firebaseapp.com",
-    projectId: "medi-app-63403",
-    storageBucket: "medi-app-63403.firebasestorage.app",
-    messagingSenderId: "771875544288",
-    appId: "1:771875544288:web:bfb3d5aade2aa974e68485",
-    measurementId: "G-1KY8HJH5L7"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
   };
 
 const app = initializeApp(firebaseConfig);
