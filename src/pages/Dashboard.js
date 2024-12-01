@@ -1,22 +1,78 @@
-import React, { useState } from "react";
-import { FaUser, FaClipboard, FaPills, FaFlask, FaSignOutAlt } from "react-icons/fa"; // Icons for navigation
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // For navigation
+import { signOut, onAuthStateChanged } from "firebase/auth"; // Firebase auth methods
+import { auth } from "../firebase"; // Firebase configuration
+import { FaUser, FaClipboard, FaPills, FaFlask, FaSignOutAlt } from "react-icons/fa";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("profile");
+  const [user, setUser] = useState(null); // To track the authenticated user
+  const navigate = useNavigate();
+
+  // Monitor auth state
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+      } else {
+        // Redirect to login if no user is authenticated
+        navigate("/login");
+      }
+    });
+
+    // Cleanup the listener on component unmount
+    return () => unsubscribe();
+  }, [navigate]);
+
+  // Handle logout
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setUser(null);
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout Error:", error.message);
+    }
+  };
 
   // Render content based on active tab
   const renderContent = () => {
     switch (activeTab) {
       case "profile":
-        return <div className="p-6"><h2 className="text-lg font-bold">Profile</h2><p>Manage your personal details here.</p></div>;
+        return (
+          <div className="p-6">
+            <h2 className="text-lg font-bold">Profile</h2>
+            <p>Manage your personal details here.</p>
+          </div>
+        );
       case "consultations":
-        return <div className="p-6"><h2 className="text-lg font-bold">Consultations</h2><p>View and manage your consultations.</p></div>;
+        return (
+          <div className="p-6">
+            <h2 className="text-lg font-bold">Consultations</h2>
+            <p>View and manage your consultations.</p>
+          </div>
+        );
       case "pharmacy":
-        return <div className="p-6"><h2 className="text-lg font-bold">Pharmacy</h2><p>Track your medication orders.</p></div>;
+        return (
+          <div className="p-6">
+            <h2 className="text-lg font-bold">Pharmacy</h2>
+            <p>Track your medication orders.</p>
+          </div>
+        );
       case "labs":
-        return <div className="p-6"><h2 className="text-lg font-bold">Labs</h2><p>View lab results and book tests.</p></div>;
+        return (
+          <div className="p-6">
+            <h2 className="text-lg font-bold">Labs</h2>
+            <p>View lab results and book tests.</p>
+          </div>
+        );
       default:
-        return <div className="p-6"><h2 className="text-lg font-bold">Welcome</h2><p>Select a section from the sidebar.</p></div>;
+        return (
+          <div className="p-6">
+            <h2 className="text-lg font-bold">Welcome</h2>
+            <p>Select a section from the sidebar.</p>
+          </div>
+        );
     }
   };
 
@@ -67,7 +123,7 @@ const Dashboard = () => {
         </nav>
         <div className="px-4 py-4">
           <button
-            onClick={() => alert("Logging out...")}
+            onClick={handleLogout}
             className="flex items-center p-3 w-full text-left bg-red-600 rounded-lg hover:bg-red-700"
           >
             <FaSignOutAlt className="mr-3" />
@@ -80,7 +136,7 @@ const Dashboard = () => {
       <main className="flex-1 bg-gray-100">
         {/* Header */}
         <header className="bg-white shadow px-6 py-4 flex items-center justify-between">
-          <h1 className="text-xl font-bold">Welcome, User!</h1>
+          <h1 className="text-xl font-bold">Welcome, {user?.displayName || "User"}!</h1>
           <button className="bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800">
             Notifications
           </button>
