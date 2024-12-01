@@ -3,18 +3,7 @@ import React from "react";
 const ContactPage = () => {
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* Header */}
-      <header className="bg-red-600 text-white shadow sticky top-0 z-50">
-        <div className="container mx-auto flex justify-between items-center py-4 px-6">
-          <h1 className="text-2xl font-bold">Debe Telo Medicine</h1>
-          <nav className="space-x-6">
-            <a href="/" className="hover:underline">Home</a>
-            <a href="/about" className="hover:underline">About Us</a>
-            <a href="/services" className="hover:underline">Services</a>
-            <a href="/contact" className="hover:underline">Contact Us</a>
-          </nav>
-        </div>
-      </header>
+
 
       {/* Contact Section */}
       <section className="py-16 bg-white">

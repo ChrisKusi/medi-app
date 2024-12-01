@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Header from "../components/Header"; // Import the reusable header
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Password visibility icons
 
 const SignupPage = () => {
@@ -30,8 +29,7 @@ const SignupPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 to-red-100 flex flex-col">
-      {/* Header */}
-      <Header />
+
 
       {/* Hero Section */}
       <section className="flex-1 flex items-center justify-center">

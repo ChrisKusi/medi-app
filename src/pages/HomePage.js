@@ -1,11 +1,8 @@
 import React from "react";
-import Header from "../components/Header"; // Import the reusable header
-
 const HomePage = () => {
   return (
     <div className="bg-gray-100">
-      {/* Header */}
-      <Header />
+
 
       {/* Hero Banner */}
       <section className="bg-blue-100 py-20">
