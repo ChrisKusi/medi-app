@@ -13,32 +13,78 @@ const Header = () => {
   return (
     <header className="bg-red-600 text-white shadow sticky top-0 z-50">
       {/* Header Container */}
-      <div className="container mx-auto flex justify-between items-center px-6 py-4">
-        {/* Logo and Name */}
-        <div className="flex items-center space-x-3">
-          <img src={logo} alt="Debe Telo Medicine" className="h-10 w-10" />
-          <h1 className="text-lg font-bold">Debe Telo Medicine</h1>
-        </div>
-
-        {/* Hamburger Menu for Mobile */}
+      <div className="container mx-auto flex items-center justify-between py-4 px-6">
+        {/* Mobile: Hamburger Icon */}
         <button
-          className="text-white md:hidden text-2xl focus:outline-none"
+          className="text-white text-2xl md:hidden focus:outline-none"
           onClick={toggleMenu}
         >
           {isMenuOpen ? <FaTimes /> : <FaBars />}
         </button>
 
-        {/* Navigation Links */}
-        <nav
-          className={`absolute md:static bg-red-600 md:flex md:space-x-8 md:items-center md:justify-center w-full md:w-auto left-0 top-16 md:top-auto p-6 md:p-0 transition-transform duration-300 ${
-            isMenuOpen ? "translate-y-0" : "-translate-y-full"
-          }`}
-        >
-          <ul className="flex flex-col md:flex-row text-center md:text-left">
+        {/* Logo */}
+        <div className="flex items-center justify-center flex-grow md:flex-grow-0">
+          <img src={logo} alt="Debe Telo Medicine" className="h-10 w-10" />
+          <h1 className="text-lg font-bold hidden md:block ml-3">
+            Debe Telo Medicine
+          </h1>
+        </div>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex space-x-8">
+          <NavLink
+            to="/"
+            className="hover:underline"
+            activeClassName="underline"
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/about"
+            className="hover:underline"
+            activeClassName="underline"
+          >
+            About Us
+          </NavLink>
+          <NavLink
+            to="/services"
+            className="hover:underline"
+            activeClassName="underline"
+          >
+            Services
+          </NavLink>
+          <NavLink
+            to="/contact"
+            className="hover:underline"
+            activeClassName="underline"
+          >
+            Contact Us
+          </NavLink>
+          <NavLink
+            to="/login"
+            className="hover:underline"
+            activeClassName="underline"
+          >
+            Login
+          </NavLink>
+          <NavLink
+            to="/signup"
+            className="hover:underline"
+            activeClassName="underline"
+          >
+            Sign Up
+          </NavLink>
+        </nav>
+      </div>
+
+      {/* Mobile Dropdown Menu */}
+      {isMenuOpen && (
+        <div className="bg-red-600 md:hidden absolute w-full left-0 top-16 shadow-lg z-40">
+          <ul className="flex flex-col items-center space-y-4 py-4">
             <li>
               <NavLink
                 to="/"
-                className="block py-2 md:py-0 hover:underline"
+                className="hover:underline"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
@@ -47,7 +93,7 @@ const Header = () => {
             <li>
               <NavLink
                 to="/about"
-                className="block py-2 md:py-0 hover:underline"
+                className="hover:underline"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About Us
@@ -56,7 +102,7 @@ const Header = () => {
             <li>
               <NavLink
                 to="/services"
-                className="block py-2 md:py-0 hover:underline"
+                className="hover:underline"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Services
@@ -65,7 +111,7 @@ const Header = () => {
             <li>
               <NavLink
                 to="/contact"
-                className="block py-2 md:py-0 hover:underline"
+                className="hover:underline"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact Us
@@ -74,7 +120,7 @@ const Header = () => {
             <li>
               <NavLink
                 to="/login"
-                className="block py-2 md:py-0 hover:underline"
+                className="hover:underline"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Login
@@ -83,15 +129,15 @@ const Header = () => {
             <li>
               <NavLink
                 to="/signup"
-                className="block py-2 md:py-0 hover:underline"
+                className="hover:underline"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Sign Up
               </NavLink>
             </li>
           </ul>
-        </nav>
-      </div>
+        </div>
+      )}
     </header>
   );
 };
