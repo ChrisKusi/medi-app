@@ -12,7 +12,8 @@ const Header = () => {
 
   return (
     <header className="bg-red-600 text-white shadow sticky top-0 z-50">
-      <div className="container mx-auto flex justify-between items-center py-4 px-6">
+      {/* Header Container */}
+      <div className="container mx-auto flex justify-between items-center px-6 py-4">
         {/* Logo and Name */}
         <div className="flex items-center space-x-3">
           <img src={logo} alt="Debe Telo Medicine" className="h-10 w-10" />
@@ -29,15 +30,15 @@ const Header = () => {
 
         {/* Navigation Links */}
         <nav
-          className={`md:flex md:justify-center md:items-center absolute md:static bg-red-600 w-full md:w-auto left-0 top-16 md:top-auto p-4 md:p-0 transition-transform duration-300 ${
+          className={`absolute md:static bg-red-600 md:flex md:space-x-8 md:items-center md:justify-center w-full md:w-auto left-0 top-16 md:top-auto p-6 md:p-0 transition-transform duration-300 ${
             isMenuOpen ? "translate-y-0" : "-translate-y-full"
           }`}
         >
-          <ul className="flex flex-col md:flex-row md:space-x-8">
+          <ul className="flex flex-col md:flex-row text-center md:text-left">
             <li>
               <NavLink
                 to="/"
-                className="block text-center md:inline hover:underline py-2 md:py-0"
+                className="block py-2 md:py-0 hover:underline"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
@@ -46,7 +47,7 @@ const Header = () => {
             <li>
               <NavLink
                 to="/about"
-                className="block text-center md:inline hover:underline py-2 md:py-0"
+                className="block py-2 md:py-0 hover:underline"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About Us
@@ -55,7 +56,7 @@ const Header = () => {
             <li>
               <NavLink
                 to="/services"
-                className="block text-center md:inline hover:underline py-2 md:py-0"
+                className="block py-2 md:py-0 hover:underline"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Services
@@ -64,7 +65,7 @@ const Header = () => {
             <li>
               <NavLink
                 to="/contact"
-                className="block text-center md:inline hover:underline py-2 md:py-0"
+                className="block py-2 md:py-0 hover:underline"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact Us
@@ -73,7 +74,7 @@ const Header = () => {
             <li>
               <NavLink
                 to="/login"
-                className="block text-center md:inline hover:underline py-2 md:py-0"
+                className="block py-2 md:py-0 hover:underline"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Login
@@ -82,7 +83,7 @@ const Header = () => {
             <li>
               <NavLink
                 to="/signup"
-                className="block text-center md:inline hover:underline py-2 md:py-0"
+                className="block py-2 md:py-0 hover:underline"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Sign Up
