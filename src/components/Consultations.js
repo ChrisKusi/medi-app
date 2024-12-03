@@ -12,23 +12,23 @@ const Consultations = () => {
   const doctors = [
     {
       id: 1,
-      name: "Dr. John Doe",
+      name: "DR. BALIGI",
       profilePicture: doc1,  // Use the imported image variable directly
-      specialty: "Cardiologist",
+      specialty: "UROLOGIST",
       isOnline: true,
     },
     {
       id: 2,
-      name: "Dr. Jane Smith",
+      name: "DR EVANS",
       profilePicture: doc2,  // Use the imported image variable directly
-      specialty: "Pediatrician",
+      specialty: "SURGEON",
       isOnline: false,
     },
     {
       id: 3,
-      name: "Dr. Alice Brown",
+      name: "DR NELSON",
       profilePicture: doc3,  // Use the imported image variable directly
-      specialty: "Dermatologist",
+      specialty: "MEDICAL DOCTOR",
       isOnline: true,
     },
   ];
