@@ -160,6 +160,7 @@ import { FaUser, FaClipboard, FaPills, FaFlask, FaSignOutAlt, FaBars } from "rea
 import Modal from "../components/Modal"; // Assuming Modal is a separate component
 import Consultations from "../components/Consultations"; // Importing the consultations component
 import Pharmacy from "../components/Pharmacy"; // Importing the pharmacy component
+import Labs from "../components/Labs"; // Importing the pharmacy component
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("profile");
@@ -351,6 +352,13 @@ const Dashboard = () => {
         return (
           <div className="p-6">
             <Pharmacy user={user} /> {/* Pass any necessary props to the Pharmacy component */}
+          </div>
+        );
+
+        case "labs":
+        return (
+          <div className="p-6">
+            <Labs user={user} /> {/* Pass any necessary props to the labs component */}
           </div>
         );
       default:
