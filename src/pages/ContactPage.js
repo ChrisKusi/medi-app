@@ -85,17 +85,17 @@ const ContactPage = () => {
               {
                 title: "Phone",
                 icon: "📞",
-                description: "Call us at +1-800-123-4567 for immediate assistance.",
+                description: "Call us at +233549663830 for immediate assistance.",
               },
               {
                 title: "Email",
                 icon: "📧",
-                description: "Send us an email at support@debetelomedicine.com.",
+                description: "Send us an email at baligielijah100@gmail.com.",
               },
               {
                 title: "Location",
                 icon: "📍",
-                description: "Visit us at 123 Healthcare St., New York, NY.",
+                description: "Visit us at Kumasi - Ghana.",
               },
             ].map((contact, index) => (
               <div
