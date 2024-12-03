@@ -159,6 +159,7 @@ import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { FaUser, FaClipboard, FaPills, FaFlask, FaSignOutAlt, FaBars } from "react-icons/fa";
 import Modal from "../components/Modal"; // Assuming Modal is a separate component
 import Consultations from "../components/Consultations"; // Importing the consultations component
+import Pharmacy from "../components/Pharmacy"; // Importing the pharmacy component
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("profile");
@@ -345,6 +346,13 @@ const Dashboard = () => {
           <Consultations user={user} /> {/* Pass any necessary props to the Consultations component */}
         </div>
       );
+
+      case "pharmacy":
+        return (
+          <div className="p-6">
+            <Pharmacy user={user} /> {/* Pass any necessary props to the Pharmacy component */}
+          </div>
+        );
       default:
         return <div>Select a tab from the sidebar.</div>;
     }

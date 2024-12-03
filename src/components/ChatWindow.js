@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FaPaperclip, FaMicrophone, FaVideo } from "react-icons/fa";
+import { FaPaperclip,  FaVideo } from "react-icons/fa";
 
 const ChatWindow = ({ doctor, onDoctorChange }) => {
   const [message, setMessage] = useState(""); // State to hold the typed message
@@ -10,7 +10,7 @@ const ChatWindow = ({ doctor, onDoctorChange }) => {
 
   const videoRef = useRef(); // Reference to local video element
   const remoteVideoRef = useRef(); // Reference to remote video element
-  const mediaRecorderRef = useRef(null); // Ref to store media recorder instance
+  //const mediaRecorderRef = useRef(null); // Ref to store media recorder instance
 
   useEffect(() => {
     if (isVideoCall) {
