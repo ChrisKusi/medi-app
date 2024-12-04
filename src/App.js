@@ -12,7 +12,7 @@ import ForgotPasswordPage from "./pages/ForgotPasswordPage"; // Add this import
 import DoctorDashboard from "./components/DoctorDashboard";
 import PharmacistDashboard from "./components/PharmacistDashboard";
 import LabTechnicianDashboard from "./components/LabTechnicianDashboard";
-import Patients from "./components/Patients"; // Import Patients Component
+
 
 const App = () => {
   return (
@@ -31,7 +31,7 @@ const App = () => {
           <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
           <Route path="/pharmacist-dashboard" element={<PharmacistDashboard />} />
           <Route path="/labtech-dashboard" element={<LabTechnicianDashboard />} />
-          <Route path="/patients" element={<Patients />} />
+          
         </Routes>
       </Layout>
     </Router>
