@@ -9,6 +9,10 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import Dashboard from "./pages/Dashboard";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage"; // Add this import
+import DoctorDashboard from "./components/DoctorDashboard";
+import PharmacistDashboard from "./components/PharmacistDashboard";
+import LabTechnicianDashboard from "./components/LabTechnicianDashboard";
+import Patients from "./components/Patients"; // Import Patients Component
 
 const App = () => {
   return (
@@ -24,6 +28,10 @@ const App = () => {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
+          <Route path="/pharmacist-dashboard" element={<PharmacistDashboard />} />
+          <Route path="/labtech-dashboard" element={<LabTechnicianDashboard />} />
+          <Route path="/patients" element={<Patients />} />
         </Routes>
       </Layout>
     </Router>
